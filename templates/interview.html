@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ role }} interview · InterviewAI{% endblock %}
+{% block content %}
+<h2>{{ role }} interview</h2>
+<p class="muted">Answer in your own words. Cover the key points a strong answer would include.</p>
+<form method="post">
+  {% for q in questions %}
+  <div class="card">
+    <label><strong>Question {{ loop.index }}.</strong> {{ q }}
+      <textarea name="a{{ loop.index0 }}" rows="4" placeholder="Type your answer"></textarea>
+    </label>
+  </div>
+  {% endfor %}
+  <button class="btn">Submit answers</button>
+</form>
+{% endblock %}

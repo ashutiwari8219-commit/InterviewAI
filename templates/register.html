@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Sign up · InterviewAI{% endblock %}
+{% block content %}
+<form class="card narrow" method="post">
+  <h2>Create your account</h2>
+  <label>Name<input name="name" required></label>
+  <label>Email<input type="email" name="email" required></label>
+  <label>Password (6+ characters)<input type="password" name="password" minlength="6" required></label>
+  <button class="btn">Create account</button>
+  <p class="muted">Already registered? <a href="{{ url_for('login') }}">Log in</a></p>
+</form>
+{% endblock %}

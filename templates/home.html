@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Practice interviews until the answers come easily.</h1>
+  <p>Pick a role, answer real questions, and see which key points you covered and which you missed.</p>
+  <div class="row">
+    <a class="btn" href="{{ url_for('register') }}">Start practicing</a>
+    <a class="btn ghost" href="{{ url_for('login') }}">Log in</a>
+  </div>
+</section>
+{% endblock %}

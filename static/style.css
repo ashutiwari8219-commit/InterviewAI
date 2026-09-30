@@ -1,0 +1,36 @@
+:root{--bg:#0f1720;--panel:#17222e;--line:#263444;--text:#e8eef5;--muted:#8fa1b3;--accent:#3fd0c9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 "Segoe UI",system-ui,sans-serif}
+a{color:var(--accent)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;border-bottom:1px solid var(--line)}
+.nav nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.nav nav a{text-decoration:none;color:var(--muted)}
+.nav nav a:hover{color:var(--text)}
+.brand{font-weight:700;font-size:1.2rem;color:var(--text);text-decoration:none}
+main{max-width:900px;margin:0 auto;padding:32px 5vw}
+.hero{padding:60px 0}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.15;margin:0 0 16px;max-width:16em}
+.hero p{color:var(--muted);max-width:34em}
+.row{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.btn{display:inline-block;background:var(--accent);color:#06211f;border:0;padding:10px 20px;border-radius:8px;font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn.small{padding:6px 14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px;margin:0 0 16px}
+.narrow{max-width:420px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:16px}
+.grid .card{margin:0}
+.big{font-size:2.4rem;font-weight:700;margin:0;color:var(--accent)}
+.muted{color:var(--muted);margin:0}
+label{display:block;margin-bottom:14px}
+input,textarea{width:100%;margin-top:6px;padding:10px;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:8px;font:inherit}
+input:focus,textarea:focus,.btn:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.flash{background:#2a2f1c;border:1px solid #5b6a2b;padding:10px 14px;border-radius:8px;margin-bottom:16px}
+.item{display:flex;gap:16px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border:0}
+.item .muted{flex:1}
+.item .bar{flex:2}
+.pick{color:var(--text);text-align:left;cursor:pointer;font:inherit;display:flex;flex-direction:column;gap:4px}
+.pick:hover{border-color:var(--accent)}
+.bar{height:8px;background:var(--bg);border-radius:4px;overflow:hidden}
+.bar span{display:block;height:100%;background:var(--accent)}
+h2,h3{margin-top:0}

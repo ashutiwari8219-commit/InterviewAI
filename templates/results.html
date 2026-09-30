@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Results · InterviewAI{% endblock %}
+{% block content %}
+<h2>{{ r.role }} results</h2>
+<div class="card"><p class="muted">Overall score</p><p class="big">{{ r.score|round|int }}%</p><p class="muted">{{ r.created_at }}</p></div>
+{% for d in details %}
+<div class="card">
+  <p><strong>{{ loop.index }}. {{ d.q }}</strong></p>
+  <p>{{ d.answer or "No answer given." }}</p>
+  <p class="muted">Covered: {{ d.hit|join(", ") or "none" }}</p>
+  <p class="muted">Missed: {{ d.missed|join(", ") or "none" }}</p>
+  <div class="bar"><span style="width: {{ d.score }}%"></span></div>
+</div>
+{% endfor %}
+<a class="btn" href="{{ url_for('start_interview') }}">Practice again</a>
+{% endblock %}

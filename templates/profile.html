@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Profile · InterviewAI{% endblock %}
+{% block content %}
+<h2>Profile</h2>
+<div class="card narrow">
+  <p><span class="muted">Name</span><br>{{ u.name }}</p>
+  <p><span class="muted">Email</span><br>{{ u.email }}</p>
+  <p><span class="muted">Joined</span><br>{{ u.created_at }}</p>
+  <p><span class="muted">Interviews taken</span><br>{{ n }}</p>
+</div>
+{% endblock %}
