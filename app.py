@@ -6,7 +6,20 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-change-me")
-DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "database.db")
+
+# Safer session cookies (Render serves over HTTPS)
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Lax",
+    SESSION_COOKIE_SECURE=bool(os.environ.get("RENDER")),  # Render sets RENDER=true
+)
+
+# Set DATABASE_PATH (e.g. /var/data/database.db) if you attach a persistent disk on Render.
+# Without it, the DB lives next to app.py and resets on each redeploy (free tier).
+DB = os.environ.get(
+    "DATABASE_PATH",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "database.db"),
+)
 
 # (question, keywords a good answer should mention)
 QUESTIONS = {
@@ -44,6 +57,7 @@ def db():
 
 
 def init_db():
+    os.makedirs(os.path.dirname(DB), exist_ok=True)
     con = db()
     con.executescript("""
     CREATE TABLE IF NOT EXISTS users(
@@ -57,7 +71,7 @@ def init_db():
     con.close()
 
 
-init_db()
+init_db()  # runs at import, so gunicorn creates the tables too
 
 
 def login_required(f):
@@ -194,4 +208,5 @@ def profile():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Local development only. Render runs: gunicorn app:app
+    app.run(debug=os.environ.get("FLASK_DEBUG", "1") == "1")
